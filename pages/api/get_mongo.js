@@ -1,9 +1,9 @@
 import clientPromise from '../../utils/mongodb';
-
+import { BACKEND_URL } from '../../utils/constants';
 export default async function handler(request, response) {
   const { book_index } = request.query;
   //console.log(request.query)
-  const back_data=await fetch(`${process.env.BACKEND_URL}/index?index=${book_index}`);
+  const back_data=await fetch(`${BACKEND_URL}/index?index=${book_index}`);
   const {result}= await back_data.json();
 
   const query = {index:{$in:result}};

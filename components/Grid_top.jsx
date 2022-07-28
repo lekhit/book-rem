@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import { BASE_URL } from '../utils/constants';
 import LinearProgress from '@mui/material/LinearProgress';
 
 import Box from '@mui/material/Box';
@@ -69,27 +69,34 @@ export default function FixedColumns() {
 
   const updateBooks = async () => {
     setLoading(true);
-    var options = {
-      method: 'GET',
-      url: `http://localhost:3000/api/index_page`,
-      params: { page: page },
-    };
-    setProgress(55);
-    axios
-      .request(options)
-      .then(function (response) {
-        setProgress(99);
+    console.log(process.env.BASE_URL)
+    const res = await fetch(`${BASE_URL}/api/index_page?page=${page}`)
+  const rs = await res.json()
+  setArticles(rs.result);
+  setLoading(false);
+     
+    // var options = {
+    //   method: 'GET',
+    //   url: `${process.env.BASE_URL}/api/index_page`,
+    //   params: { page: page },
+    // };
+    
+    // setProgress(55);
+    // axios
+    //   .request(options)
+    //   .then(function (response) {
+    //     setProgress(99);
 
-        //setArticles(articles.concat(response.data.result));
-        setArticles(response.data.result)
-        console.log(response);
-        setMore(false);
-        setLoading(false);
-      })
-      .catch(function (error) {
-        console.error(error);
+    //     //setArticles(articles.concat(response.data.result));
+    //     setArticles(response.data.result)
+    //     console.log(response);
+    //     setMore(false);
+    //     setLoading(false);
+    //   })
+    //   .catch(function (error) {
+    //     console.error(error);
 
-      });
+    //   });
 
     //let parsedData = await data.json();
     //console.log(parsedData);

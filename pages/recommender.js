@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Backdrop from '../components/backdrop';
 import { useRouter } from 'next/router';
 import Grid from '../components/Grid_my';
+import { BASE_URL } from '../utils/constants';
 var axios = require('axios').default;
 
 export default function Home({mydata}) {
@@ -45,7 +46,7 @@ export async function getServerSideProps(ctx) {
     book_index:0
   }
   //console.log(`${process.env.BASE_URL}/api/get_book?book_index=${ctx.query.book_index}` )
-  const res = await fetch(`${process.env.BASE_URL}/api/get_mongo?book_index=${ctx.query.book_index}`)
+  const res = await fetch(`${BASE_URL}/api/get_mongo?book_index=${ctx.query.book_index}`)
   const rs = await res.json()
 const data= JSON.parse(JSON.stringify(rs));
 // let data;
