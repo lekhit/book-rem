@@ -16,9 +16,9 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Button from '@mui/material/Button';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-
+import Drawer from './drawer';
 import Link from 'next/link';
-import { useAppContext } from '../context/notes/state';
+
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
@@ -59,7 +59,7 @@ export default function RecipeReviewCard(props) {
   const [expanded, setExpanded] = React.useState(() =>
     props.open ? true : false
   );
-const a=useAppContext();
+
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -99,31 +99,41 @@ const a=useAppContext();
       />
 
       <CardContent>
-
-      <Rating name="half-rating-read" defaultValue={props.article.rating} precision={0.1} readOnly />
        
+      <Grid
+          container
+          direction="column"
+          justifyContent="space-around"
+          alignItems="center"
+        >
+          
+          <Rating name="half-rating-read" defaultValue={props.article.rating} precision={0.1} readOnly />
+          <Typography sx={{ mb: 1.5 }} color="text.secondary">
+          {props.article.likedPercent}%
+        </Typography>
+      
+        </Grid>
+      
       </CardContent>
+
+
       <CardActions disableSpacing>
+      <Drawer book_index={props.article.index}/>
+      
         <Grid
           container
           direction="row"
           justifyContent="flex-end"
           alignItems="flex-end"
         >
-          <Link href={`/recommender?book_index=${props.article.index}`}>
+          
+          
+      <Link href={`/recommender?book_index=${props.article.index}`}>
             <Button variant="contained">
               {' '}
-              More <ArrowForwardIosIcon />
+              Similar <ArrowForwardIosIcon />
             </Button>
           </Link>
-          <ExpandMore
-            expand={expanded}
-            onClick={handleExpandClick}
-            aria-expanded={expanded}
-            aria-label="show more"
-          >
-            <ExpandMoreIcon />
-          </ExpandMore>
         </Grid>
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>

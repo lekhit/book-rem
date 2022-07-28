@@ -13,7 +13,7 @@ export default async  (req, res) => {
   try {
     const client = await clientPromise
     const db=await client.db('books');
-   const data = await db.collection('books').find(query).project({"coverImg":1,index:1,title:1,author:1,'genres':1,'rating':1}).toArray();
+   const data = await db.collection('books').find(query).project({"coverImg":1,index:1,title:1,author:1,'genres':1,'rating':1,'likedPercent':1}).toArray();
 
     // const books = [];
     // if (data.rows.length > 0) {

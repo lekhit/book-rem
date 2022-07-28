@@ -1,24 +1,37 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
+import {Box,Container,Divider} from '@mui/material';
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
-import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+import { BASE_URL } from '../utils/constants';
 
-export default function TemporaryDrawer() {
-  const [state, setState] = React.useState({
+import CircularProgress from '@mui/material/CircularProgress';
+
+
+import Typography from '@mui/material/Typography';
+export default function TemporaryDrawer(props) {
+  const [article,setArticle]=React.useState({});
+  const [loading,setLoading]=React.useState(true);
+    const [state, setState] = React.useState({
     top: false,
     left: false,
     bottom: false,
     right: false,
   });
+React.useEffect(()=>{
 
+  const get_data=async()=>{
+  const res = await fetch(`${BASE_URL}/api/book_details?book_index=${props.book_index}`)
+  const rs = await res.json()
+setArticle(rs.result);
+
+setLoading(false)
+}
+if (state.bottom)
+get_data();
+console.log(article)
+
+
+},[state])
   const toggleDrawer = (anchor, open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
@@ -26,54 +39,96 @@ export default function TemporaryDrawer() {
 
     setState({ ...state, [anchor]: open });
   };
+const check_series=()=>props.series.length>5;
 
   const list = (anchor) => (
     <Box
-      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
+      sx={{mt:2, width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250,maxHeight:450 }}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
-    >
-      <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
+    >{loading && <CircularProgress disableShrink />}
+            
+ {!loading && <Container>
+  <Typography variant="h5" component="div">
+          Description
+        </Typography>
+        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+          {article.description}
+        </Typography>
+        <Divider />
+        <Typography variant="h6" component="div">
+        Genres
+        </Typography>
+        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+        {article.genres}
+        </Typography>
+
+        {check_series && <>
+        
+        <Typography variant="h6" component="div">
+       Series
+        </Typography>
+        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+        {article.series}
+        </Typography>
+        </>
+        }
+        <Typography variant="h6" component="div">
+       Pages
+        </Typography>
+        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+        {article.pages}
+        </Typography>
+        <Typography variant="h6" component="div">
+       Published
+        </Typography>
+        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+        {article.publishDate}
+        </Typography>
+        <Typography variant="h6" component="div">
+       Type
+        </Typography>
+        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+        {article.bookFormat}
+        </Typography>
+        <Typography variant="h6" component="div">
+       Settings
+        </Typography>
+        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+        {article.setting}
+        </Typography>
+        <Typography variant="h6" component="div">
+       Awards
+        </Typography>
+        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+        {article.awards}
+        </Typography>
+
+        <Typography variant="body2">
+          well meaning and kindly.
+        
+          {'"a benevolent smile"'}
+        </Typography>
+     </Container>}
+
     </Box>
   );
 
   return (
     <div>
-      {['left', 'right', 'top', 'bottom'].map((anchor) => (
+      {[ 'bottom'].map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
+          <Button onClick={toggleDrawer(anchor, true)}>Details</Button>
+
           <Drawer
             anchor={anchor}
             open={state[anchor]}
             onClose={toggleDrawer(anchor, false)}
           >
-            {list(anchor)}
+            { list(anchor)}
           </Drawer>
+
         </React.Fragment>
       ))}
     </div>
