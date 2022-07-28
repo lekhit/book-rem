@@ -30,7 +30,7 @@ export const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function FixedColumns() {
-  const [articles, setArticles] = useState();
+  const [articles, setArticles] = useState([]);
   const [page, setPage] = useState(0);
 
   const [loading, setLoading] = useState(true);
@@ -69,10 +69,11 @@ export default function FixedColumns() {
 
   const updateBooks = async () => {
     setLoading(true);
-    console.log(process.env.BASE_URL)
+
     const res = await fetch(`${BASE_URL}/api/index_page?page=${page}`)
   const rs = await res.json()
-  setArticles(rs.result);
+  //setArticles(articles.concat(rs.result));
+  setArticles(rs.result)
   setLoading(false);
      
     // var options = {
@@ -117,7 +118,7 @@ export default function FixedColumns() {
   //console.log(articles);
   return (
     <>
-    {loading  && <Backdrop/>}
+    {loading  && <Backdrop on={true}/>}
       {/*Put the scroll bar always on the bottom*/}
       {articles && < Container sx={{ minHeight: 253, pt: 18 }} id="scrollableDiv">
         <InfiniteScroll

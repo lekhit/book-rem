@@ -8,12 +8,12 @@ export default async  (req, res) => {
   // Open Chrome DevTools to step through the debugger!
   // debugger;
   const {page}=req.query;
-  const query = {index:{$gt:page*20,$lt:(page+2)*20}};
+  const query = {index:{$lt:(page+1)*20}};
 //console.log(query,result)
   try {
     const client = await clientPromise
     const db=await client.db('books');
-   const data = await db.collection('books').find(query).project({"coverImg":1,index:1,title:1,author:1}).toArray();
+   const data = await db.collection('books').find(query).project({"coverImg":1,index:1,title:1,author:1,'genres':1}).toArray();
 
     // const books = [];
     // if (data.rows.length > 0) {
