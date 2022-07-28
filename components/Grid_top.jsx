@@ -30,7 +30,7 @@ export const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function FixedColumns() {
-  const [articles, setArticles] = useState();
+  const [articles, setArticles] = useState([]);
   const [page, setPage] = useState(0);
 
   const [loading, setLoading] = useState(true);
@@ -72,7 +72,7 @@ export default function FixedColumns() {
     console.log(process.env.BASE_URL)
     const res = await fetch(`${BASE_URL}/api/index_page?page=${page}`)
   const rs = await res.json()
-  setArticles(rs.result);
+  setArticles(articles.concat(rs.result));
   setLoading(false);
      
     // var options = {
@@ -102,11 +102,32 @@ export default function FixedColumns() {
     //console.log(parsedData);
     //setArticles(parsedData.results);
   };
-  //const { articles } = MyJson;
+
   useEffect(()=>{
     updateBooks();
 
   },[page])
+
+  // useEffect(() => {
+  //   let didCancel = false;
+  
+   
+  //   const updateBooks = async () => {
+  //     setLoading(true);
+  
+  //     const res = await fetch(`${BASE_URL}/api/index_page?page=${page}`)
+  //   const rs = await res.json()
+  //   if (!didCancel) { // Ignore if we started fetching something else
+  //     console.log(rs);
+  //   }
+  //   //setArticles(articles.concat(rs.result));
+  //   setArticles(rs.result)
+  //   setLoading(false);
+  // }
+  //   updateBooks();
+  //   return () => { didCancel = true; }; // Remember if we start fetching something else
+  // }, [page]);
+
   const fetchMore = () => {
     if (!loading) {
       

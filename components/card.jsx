@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
-import { Card, Box, Grid } from '@mui/material';
+import { Card, Box, Grid,Rating } from '@mui/material';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
@@ -16,9 +16,9 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Button from '@mui/material/Button';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import Image from 'next/image'
-import Link from 'next/link';
 
+import Link from 'next/link';
+import { useAppContext } from '../context/notes/state';
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
@@ -59,6 +59,7 @@ export default function RecipeReviewCard(props) {
   const [expanded, setExpanded] = React.useState(() =>
     props.open ? true : false
   );
+const a=useAppContext();
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -98,9 +99,8 @@ export default function RecipeReviewCard(props) {
       />
 
       <CardContent>
-        
-          {/* {arr.toString()} */}
-          
+
+      <Rating name="half-rating-read" defaultValue={props.article.rating} precision={0.1} readOnly />
        
       </CardContent>
       <CardActions disableSpacing>

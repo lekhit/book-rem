@@ -1,14 +1,17 @@
 import '../styles/globals.css';
+import {AppWrapper} from '../context/notes/state';
 import NavBar from '../components/navBar';
-import NextProgress from "next-progress";
+import NextNProgress from "nextjs-progressbar";
 function MyApp({ Component, pageProps }) {
   return (
     <>
+  
       <NavBar />
-      <div styles={{backGround:"#FF5733"}}>
-      <NextProgress delay={300} options={{ showSpinner: false}} />
-      </div>
+
+      <NextNProgress delay={300} color="#FF5733"/>
+<AppWrapper>
       <Component {...pageProps}></Component>
+      </AppWrapper>
     </>
   );
 }
