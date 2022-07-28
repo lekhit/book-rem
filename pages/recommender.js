@@ -7,10 +7,7 @@ import Grid from '../components/Grid_my';
 var axios = require('axios').default;
 
 export default function Home({mydata}) {
-  const [loading, setLoading] = useState(false);
   //const [data, setData] = useState();
-  const router = useRouter();
-  const { isbn } = router.query;
   // useEffect(() => {
   //   //Get_books();
   // });
@@ -51,7 +48,6 @@ export async function getServerSideProps(ctx) {
   const res = await fetch(`${process.env.BASE_URL}/api/get_mongo?book_index=${ctx.query.book_index}`)
   const rs = await res.json()
 const data= JSON.parse(JSON.stringify(rs));
-
 // let data;
 // console.log(`${process.env.BASE_URL}/api/get_data?book_index=${ctx.query.book_index}` )
 

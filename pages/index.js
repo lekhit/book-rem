@@ -10,7 +10,6 @@ export default function Home() {
       <Head>
         <title>Create Next App</title>
       </Head>
-      <NavBar />
       <Grid />
       this is text
     </div>

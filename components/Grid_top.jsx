@@ -12,6 +12,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Mysample from './sample';
 import Loading from './loading';
+import Backdrop from './backdrop';
 var axios = require('axios').default;
 
 export const Item = styled(Paper)(({ theme }) => ({
@@ -29,7 +30,7 @@ export const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function FixedColumns() {
-  const [articles, setArticles] = useState(Mysample);
+  const [articles, setArticles] = useState();
   const [page, setPage] = useState(0);
 
   const [loading, setLoading] = useState(true);
@@ -70,7 +71,7 @@ export default function FixedColumns() {
     setLoading(true);
     var options = {
       method: 'GET',
-      url: 'https://rem4.lekhitborole.repl.co',
+      url: `http://localhost:3000/api/index_page`,
       params: { page: page },
     };
     setProgress(55);
@@ -78,14 +79,16 @@ export default function FixedColumns() {
       .request(options)
       .then(function (response) {
         setProgress(99);
-        setArticles(articles.concat(response.data));
+
+        //setArticles(articles.concat(response.data.result));
+        setArticles(response.data.result)
         console.log(response);
         setMore(false);
         setLoading(false);
       })
       .catch(function (error) {
         console.error(error);
-        setPage(page + 1);
+
       });
 
     //let parsedData = await data.json();
@@ -93,13 +96,13 @@ export default function FixedColumns() {
     //setArticles(parsedData.results);
   };
   //const { articles } = MyJson;
-  useEffect(() => {
-    //updateNews();
+  useEffect(()=>{
     updateBooks();
-    //console.log(page)
-  }, [page]);
+
+  },[page])
   const fetchMore = () => {
     if (!loading) {
+      
       setPage(page + 1);
     }
   };
@@ -107,8 +110,9 @@ export default function FixedColumns() {
   //console.log(articles);
   return (
     <>
+    {loading  && <Backdrop/>}
       {/*Put the scroll bar always on the bottom*/}
-      <Container sx={{ minHeight: 253, pt: 18 }} id="scrollableDiv">
+      {articles && < Container sx={{ minHeight: 253, pt: 18 }} id="scrollableDiv">
         <InfiniteScroll
           dataLength={articles.length}
           next={fetchMore}
@@ -117,7 +121,7 @@ export default function FixedColumns() {
           loader={<LinearDeterminate />}
         >
           <Masonry columns={{ sx: 1, md: 2, lg: 3 }} spacing={0.5}>
-            {articles.map((height, index) => (
+            { articles.map((height, index) => (
               <Grid key={index} item sx={{ p: 2 }}>
                 <Item>
                   <Mycard key={index} article={height} />
@@ -126,7 +130,7 @@ export default function FixedColumns() {
             ))}
           </Masonry>
         </InfiniteScroll>
-      </Container>
+      </Container>}
 
       <Button
         onClick={() => {

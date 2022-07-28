@@ -16,7 +16,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Button from '@mui/material/Button';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-
+import Image from 'next/image'
 import Link from 'next/link';
 
 const ExpandMore = styled((props) => {
@@ -29,6 +29,31 @@ const ExpandMore = styled((props) => {
     duration: theme.transitions.duration.shortest,
   }),
 }));
+function convert_gen(item){
+
+  const regex = /'(.+?)'/gm;
+
+  // Alternative syntax using RegExp constructor
+  // const regex = new RegExp('\'(.+?)\'', 'gm')
+  
+  const str =item
+  let m,arr=[];
+  
+  while ((m = regex.exec(str)) !== null) {
+      // This is necessary to avoid infinite loops with zero-width matches
+      if (m.index === regex.lastIndex) {
+          regex.lastIndex++;
+      }
+      
+      // The result can be accessed through the `m`-variable.
+      m.forEach((match, groupIndex) => {if(groupIndex===1) arr.push(match)
+          //console.log(`Found match, group ${groupIndex}: ${match}`);
+      });
+
+  }
+
+  return arr;
+}
 
 export default function RecipeReviewCard(props) {
   const [expanded, setExpanded] = React.useState(() =>
@@ -39,8 +64,13 @@ export default function RecipeReviewCard(props) {
     setExpanded(!expanded);
   };
 
+  //const  arr=convert_gen(props.article.genres);
+
   return (
+    <>
+   
     <Card sx={{ maxWidth: 345, border: 0.5 }}>
+      
       <CardHeader
         // avatar={
         //   <Typography sx={{maxwidth:"20"}} variant="body1" color="red">
@@ -56,6 +86,7 @@ export default function RecipeReviewCard(props) {
         title={props.article.title}
         subheader={props.article.author}
       />
+      
       <CardMedia
         component="img"
         image={
@@ -65,10 +96,12 @@ export default function RecipeReviewCard(props) {
         }
         alt="Paella dish"
       />
+
       <CardContent>
-        <Typography variant="body2" color="text.secondary">
-          {props.article.likedPercent}
-        </Typography>
+        
+          {/* {arr.toString()} */}
+          
+       
       </CardContent>
       <CardActions disableSpacing>
         <Grid
@@ -77,7 +110,7 @@ export default function RecipeReviewCard(props) {
           justifyContent="flex-end"
           alignItems="flex-end"
         >
-          <Link href={`/book?book_index=${props.article.index}`}>
+          <Link href={`/recommender?book_index=${props.article.index}`}>
             <Button variant="contained">
               {' '}
               More <ArrowForwardIosIcon />
@@ -95,9 +128,11 @@ export default function RecipeReviewCard(props) {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
+       
           <Typography paragraph>{props.article.description}</Typography>
         </CardContent>
       </Collapse>
     </Card>
+    </>
   );
 }
