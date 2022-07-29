@@ -42,18 +42,14 @@ export default function Home({mydata}) {
 export async function getServerSideProps(ctx) {
   // Fetch data from external API
 
- let data=[];
-  //console.log(`${process.env.BASE_URL}/api/get_book?book_index=${ctx.query.book_index}` )
-  try {
-    const res = await fetch(`${BASE_URL}/api/get_mongo?book_index=${ctx.query.book_index}`)
-  const rs = await res.json()
-  console.log(rs,`${BASE_URL}/api/search_book?text=${ctx.query.text}`)
-   data= JSON.parse(JSON.stringify(rs));
-  } catch (error) {
-    console.log(error)
+  const params={
+    book_index:0
   }
-  
- 
+  //console.log(`${process.env.BASE_URL}/api/get_book?book_index=${ctx.query.book_index}` )
+  const res = await fetch(`${BASE_URL}/api/search_book?text=${ctx.query.text}`)
+  const rs = await res.json()
+const data= JSON.parse(JSON.stringify(rs));
+
 // let data;
 // console.log(`${process.env.BASE_URL}/api/get_data?book_index=${ctx.query.book_index}` )
 

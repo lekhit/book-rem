@@ -148,7 +148,10 @@ export default function FixedColumns() {
           hasMore={true}
           loader={<LinearDeterminate />}
         >
-          <Masonry columns={{ sx: 1, md: 2, lg: 3 }} spacing={0.5}>
+          <Grid container direction="row"
+  justifyContent="space-around"
+  alignItems="flex-start"
+   columns={{ sx: 1, md: 2, lg: 3 }} spacing={0.5}>
             { articles.map((height, index) => (
               <Grid key={index} item sx={{ p: 2 }}>
                 <Item>
@@ -156,7 +159,7 @@ export default function FixedColumns() {
                 </Item>
               </Grid>
             ))}
-          </Masonry>
+          </Grid>
         </InfiniteScroll>
       </Container>}
 
