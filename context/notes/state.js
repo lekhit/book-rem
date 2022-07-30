@@ -4,7 +4,7 @@ const AppContext = createContext();
 
 export function AppWrapper({ children }) {
   let sharedState = {/* whatever you want */
-    value : 42
+    login : false
    
 }
   

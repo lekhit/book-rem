@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
+import {Box,Button }from '@mui/material';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
@@ -17,7 +17,8 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-
+import { useAppContext } from '../context/notes/state';
+import Login_register from './login_register'
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -61,6 +62,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 
 export default function PrimarySearchAppBar() {
+  const is_login=useAppContext();
   const router = useRouter()
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -89,7 +91,6 @@ export default function PrimarySearchAppBar() {
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
       router.push(`/search?text=${text}`)
-
     }
   }
  
@@ -97,6 +98,7 @@ export default function PrimarySearchAppBar() {
     const s=event.target.value;
     setText(s);
   }
+  
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
@@ -173,7 +175,7 @@ export default function PrimarySearchAppBar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="fixed">
         <Toolbar>
           <IconButton
             size="large"
@@ -213,6 +215,14 @@ export default function PrimarySearchAppBar() {
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+          <Button color="inherit">Login</Button>
+          </Box>
+          {!is_login.login && <Login_register/>}
+          {is_login.login &&
+           ( <>
+           
+
+          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             <IconButton size="large" aria-label="show 4 new mails" color="inherit">
               <Badge badgeContent={4} color="error">
                 <MailIcon />
@@ -251,10 +261,14 @@ export default function PrimarySearchAppBar() {
               <MoreIcon />
             </IconButton>
           </Box>
-        </Toolbar>
+        
+        </>)
+      }
+      </Toolbar>
       </AppBar>
       {renderMobileMenu}
       {renderMenu}
     </Box>
+    
   );
 }
