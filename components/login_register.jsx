@@ -3,8 +3,11 @@ import {FormControlLabel,Button,Paper,Typography,TextField,Stack,Box,Checkbox} f
 import Popper from '@mui/material/Popper';
 import { FormContainer, TextFieldElement } from 'react-hook-form-mui'
 import {BASE_URL} from '../utils/constants'
+import { useAppContext } from '../context/notes/state';
 
-const Form2=() => {
+const Form2=(props) => {
+  const is_login=useAppContext();
+  const [message,setMessage]=React.useState(null);
   const [selected,setSelected]=React.useState(false);
   const [Button_label,setLabel]=React.useState("Login")
 const handleCheckbox=  ()=>{
@@ -24,17 +27,23 @@ else url=`${BASE_URL}/api/user_login`
     },
     body: JSON.stringify(data),
   })
-  console.log(response.body,data)
+const rs=await response.json()
+  console.log(rs,data)
+  setMessage(rs.message)
+  props.changeState(null)
+  is_login.setLogin(true);
+}
+
+const dataDefault={
+    
+  'username': '',
+  "email":'',
+  'password':''
+
+
 }
 return (
-  <FormContainer defaultValues={{
-    
-      'username': '',
-      "email":'',
-      'password':''
-    
-    
-  }}
+  <FormContainer defaultValues={dataDefault}
                  onSuccess={handleSubmit}
   >
     <Paper sx={{p:3}}>
@@ -76,29 +85,28 @@ return (
     />}
 
     <Button sx={{mt:1}} type={'submit'} color={'primary'} variant={'contained'}>{Button_label}</Button>
+
     </Box>
+    <Typography variant="h5" component="div">
+{message}
+        </Typography>
     </Paper>
+
   </FormContainer>)
 }
 export default function SimplePopper() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-const [data,setData]=React.useState({"Username":"","Password":"","Email":""})
-  const handleClick = (event) => {
+   const handleClick = (event) => {
     setAnchorEl(anchorEl ? null : event.currentTarget);
   };
-  const handleForm= (event)=>{
-    const val=event.target.value
-data={...data,[event.target.id]:val}
-setData(data);
 
-  }
+const [anchorEl, setAnchorEl] = React.useState(null);
+ 
+ 
 
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popper' : undefined;
 
-const handleSubmit= ()=>{
-  console.log(data);
-}
+
   return (
     <>
      
@@ -110,8 +118,9 @@ const handleSubmit= ()=>{
       <Popper id={id} open={open} anchorEl={anchorEl}>
 
               
-<Form2/>
+<Form2 changeState={setAnchorEl}/>
       </Popper>
+      
 
     </>
   );

@@ -28,10 +28,10 @@ setLoading(false)
 }
 if (state.bottom)
 get_data();
-console.log(article)
 
 
-},[state])
+
+},[state.bottom])
   const toggleDrawer = (anchor, open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;

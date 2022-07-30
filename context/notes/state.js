@@ -1,16 +1,14 @@
-import { createContext, useContext } from 'react';
+import { createContext, useContext,useState } from 'react';
 
 const AppContext = createContext();
 
 export function AppWrapper({ children }) {
-  let sharedState = {/* whatever you want */
-    login : false
-   
-}
+  
+const [login,setLogin]=useState(false)
   
 
   return (
-    <AppContext.Provider value={sharedState}>
+    <AppContext.Provider value={{login,setLogin}}>
       {children}
     </AppContext.Provider>
   );
