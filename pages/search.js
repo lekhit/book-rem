@@ -5,9 +5,9 @@ import Backdrop from '../components/backdrop';
 import { useRouter } from 'next/router';
 import Grid from '../components/Grid_my';
 import { BASE_URL } from '../utils/constants';
-var axios = require('axios').default;
 
-export default function Home({mydata}) {
+
+export default function Search({mydata}) {
   //const [data, setData] = useState();
   // useEffect(() => {
   //   //Get_books();

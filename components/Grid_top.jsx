@@ -29,9 +29,9 @@ export const Item = styled(Paper)(({ theme }) => ({
   onClick: {},
 }));
 
-export default function FixedColumns() {
-  const [articles, setArticles] = useState([]);
-  const [page, setPage] = useState(0);
+export default function FixedColumns(props) {
+  const [articles, setArticles] = useState(props.data);
+  const [page, setPage] = useState(1);
 
   const [loading, setLoading] = useState(true);
   const [more, setMore] = useState(true);
@@ -69,8 +69,8 @@ export default function FixedColumns() {
 
   const updateBooks = async () => {
     setLoading(true);
-    console.log(process.env.BASE_URL)
-    const res = await fetch(`${BASE_URL}/api/index_page?page=${page}`)
+
+    const res = await fetch(`/api/index_page?page=${page}`)
   const rs = await res.json()
   setArticles(articles.concat(rs.result));
   setLoading(false);

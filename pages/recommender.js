@@ -7,7 +7,7 @@ import Grid from '../components/Grid_my';
 import { BASE_URL } from '../utils/constants';
 var axios = require('axios').default;
 
-export default function Home({mydata}) {
+export default function Recommender({mydata}) {
   //const [data, setData] = useState();
   // useEffect(() => {
   //   //Get_books();
@@ -47,7 +47,7 @@ export async function getServerSideProps(ctx) {
   try {
     const res = await fetch(`${BASE_URL}/api/get_mongo?book_index=${ctx.query.book_index}`)
   const rs = await res.json()
-  console.log(rs,`${BASE_URL}/api/search_book?text=${ctx.query.text}`)
+  //console.log(rs,`${BASE_URL}/api/search_book?text=${ctx.query.text}`)
    data= JSON.parse(JSON.stringify(rs));
   } catch (error) {
     console.log(error)

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
-import { Card, Box, Grid,Rating } from '@mui/material';
+import {Stack, Card, Box, Grid,Rating } from '@mui/material';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
@@ -18,7 +18,8 @@ import Button from '@mui/material/Button';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import Drawer from './drawer';
 import Link from 'next/link';
-
+import { useAppContext } from '../context/notes/state';
+import {BASE_URL} from '../utils/constants'
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
@@ -29,43 +30,43 @@ const ExpandMore = styled((props) => {
     duration: theme.transitions.duration.shortest,
   }),
 }));
-function convert_gen(item){
 
-  const regex = /'(.+?)'/gm;
-
-  // Alternative syntax using RegExp constructor
-  // const regex = new RegExp('\'(.+?)\'', 'gm')
-  
-  const str =item
-  let m,arr=[];
-  
-  while ((m = regex.exec(str)) !== null) {
-      // This is necessary to avoid infinite loops with zero-width matches
-      if (m.index === regex.lastIndex) {
-          regex.lastIndex++;
-      }
-      
-      // The result can be accessed through the `m`-variable.
-      m.forEach((match, groupIndex) => {if(groupIndex===1) arr.push(match)
-          //console.log(`Found match, group ${groupIndex}: ${match}`);
-      });
-
-  }
-
-  return arr;
-}
 
 export default function RecipeReviewCard(props) {
-  const [expanded, setExpanded] = React.useState(() =>
-    props.open ? true : false
-  );
 
+const is_login=useAppContext();
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
-  //const  arr=convert_gen(props.article.genres);
+
+
+  const handleLike= async ()=>{
+    let mydata={};
+  await is_login.setLikes((data)=>{
+      mydata.likes={...data,[props.article.index]:!data[props.article.index]}
+      return mydata.likes
+    })
+
+mydata.username=is_login.username
+
+const url=`/api/like_book2`
+let response
+ {
+response= await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(mydata),
+  })}
+  
+  
+
+
+  }
+//const  arr=convert_gen(props.article.genres);
 
   return (
     <>
@@ -118,15 +119,19 @@ export default function RecipeReviewCard(props) {
 
 
       <CardActions disableSpacing>
-      <Drawer book_index={props.article.index}/>
+    <Grid container
+          direction="column"
+          justifyContent="space-between"
+          alignItems="center">
       
         <Grid
           container
           direction="row"
-          justifyContent="flex-end"
-          alignItems="flex-end"
+          justifyContent="space-between"
+          alignItems="center"
         >
-          
+          <Drawer book_index={props.article.index}/>
+      
           
       <Link href={`/recommender?book_index=${props.article.index}`}>
             <Button variant="contained">
@@ -135,13 +140,21 @@ export default function RecipeReviewCard(props) {
             </Button>
           </Link>
         </Grid>
+       {is_login.login && <Stack direction="row"
+  justifyContent="space-between"
+  alignItems="center"
+  spacing={2}>
+        <IconButton onClick={handleLike} color={is_login.likes[props.article.index] ? 'error':'inherit'} aria-label="add to favorites">
+          <FavoriteIcon />
+        </IconButton>
+        <IconButton  aria-label="share">
+          <ShareIcon />
+        </IconButton>
+        
+        </Stack>}
+       </Grid>
       </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-       
-          <Typography paragraph>{props.article.description}</Typography>
-        </CardContent>
-      </Collapse>
+
     </Card>
     </>
   );
