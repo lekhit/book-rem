@@ -16,7 +16,7 @@ export default function Home({data}) {
     </div>
   );
 }
-export async function getStaticProps() {
+export async function getServerSideProps() {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
 
