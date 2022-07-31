@@ -95,6 +95,7 @@ export default function PrimarySearchAppBar() {
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
       router.push(`/search?text=${text}`)
+      setText('')
     }
   }
  

@@ -29,29 +29,35 @@ export default function Search() {
   //     });
   // };
   const [mydata,setMydata]=useState(false);
-  const get_data= async()=>{
-
-  }
+  const [loading,setLoading]=useState(false)
+ 
   
-useEffect(async ()=>{
-  const {text}=router.query;
-  let data=[];
+  const get_data= async(book_index)=>{
+    setLoading(true);
+      //console.log(`${process.env.BASE_URL}/api/get_book?book_index=${ctx.query.book_index}` )
+      try {
+        const res = await fetch(`/api/search_book?text=${book_index}`)
+      const rs = await res.json()
+      //console.log(rs,`${BASE_URL}/api/search_book?text=${ctx.query.text}`)
+       setMydata(rs)
+       setLoading(false)
+      } catch (error) {
+        console.log(error)
+      }
+      }
+useEffect( ()=>{
+  const text=router.query.text;
+  
+  get_data(text);
   //console.log(`${process.env.BASE_URL}/api/get_book?book_index=${ctx.query.book_index}` )
-  try {
-    const res = await fetch(`/api/search_book?text=${text}`)
-  const rs = await res.json()
-  //console.log(rs,`${BASE_URL}/api/search_book?text=${ctx.query.text}`)
-   setMydata(rs)
-  } catch (error) {
-    console.log(error)
-  }
+  
 },[router.query.text])
   return (
     <div className={styles.container}>
       <Head>
         <title>Create Next App</title>
       </Head>
-{!mydata && <Backdrop/>}
+{loading && <Backdrop/>}
       {mydata&&<Grid  articles={mydata.result}/>}
     </div>
   );
