@@ -1,17 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { BASE_URL } from '../utils/constants';
 import LinearProgress from '@mui/material/LinearProgress';
 
 import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
 import { Container, Paper } from '@mui/material';
 import Mycard from './card';
-import Masonry from '@mui/lab/Masonry';
 import { Grid, Button } from '@mui/material';
-import CircularProgress from '@mui/material/CircularProgress';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import Mysample from './sample';
-import Loading from './loading';
+
 import Backdrop from './backdrop';
 var axios = require('axios').default;
 

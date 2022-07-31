@@ -2,7 +2,6 @@ import * as React from 'react';
 import {Box,Container,Divider} from '@mui/material';
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
-import { BASE_URL } from '../utils/constants';
 
 import CircularProgress from '@mui/material/CircularProgress';
 
