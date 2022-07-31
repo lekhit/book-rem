@@ -1,0 +1,196 @@
+{
+  "message": "Success!",
+  "page": "0",
+  "result": [
+    {
+      "_id": "62d6b8047c3172598fbc9434",
+      "title": "Harry Potter and the Order of the Phoenix",
+      "author": "J.K. Rowling, Mary GrandPré (Illustrator)",
+      "rating": 4.5,
+      "genres": "['Fantasy', 'Young Adult', 'Fiction', 'Magic', 'Childrens', 'Adventure', 'Audiobook', 'Middle Grade', 'Classics', 'Science Fiction Fantasy']",
+      "likedPercent": 98,
+      "coverImg": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1546910265l/2.jpg",
+      "index": 1
+    },
+    {
+      "_id": "62d6b8047c3172598fbc9435",
+      "title": "To Kill a Mockingbird",
+      "author": "Harper Lee",
+      "rating": 4.28,
+      "genres": "['Classics', 'Fiction', 'Historical Fiction', 'School', 'Literature', 'Young Adult', 'Historical', 'Novels', 'Read For School', 'High School']",
+      "likedPercent": 95,
+      "coverImg": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1553383690l/2657.jpg",
+      "index": 2
+    },
+    {
+      "_id": "62d6b8047c3172598fbc9436",
+      "title": "Pride and Prejudice",
+      "author": "Jane Austen, Anna Quindlen (Introduction)",
+      "rating": 4.26,
+      "genres": "['Classics', 'Fiction', 'Romance', 'Historical Fiction', 'Literature', 'Historical', 'Novels', 'Historical Romance', 'Classic Literature', 'Adult']",
+      "likedPercent": 94,
+      "coverImg": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1320399351l/1885.jpg",
+      "index": 3
+    },
+    {
+      "_id": "62d6b8047c3172598fbc9437",
+      "title": "Twilight",
+      "author": "Stephenie Meyer",
+      "rating": 3.6,
+      "genres": "['Young Adult', 'Fantasy', 'Romance', 'Vampires', 'Fiction', 'Paranormal', 'Paranormal Romance', 'Supernatural', 'Teen', 'Urban Fantasy']",
+      "likedPercent": 78,
+      "coverImg": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1361039443l/41865.jpg",
+      "index": 4
+    },
+    {
+      "_id": "62d6b8047c3172598fbc9438",
+      "title": "The Book Thief",
+      "author": "Markus Zusak (Goodreads Author)",
+      "rating": 4.37,
+      "genres": "['Historical Fiction', 'Fiction', 'Young Adult', 'Historical', 'Classics', 'War', 'Holocaust', 'World War II', 'Books About Books', 'Audiobook']",
+      "likedPercent": 96,
+      "coverImg": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1522157426l/19063._SY475_.jpg",
+      "index": 5
+    },
+    {
+      "_id": "62d6b8047c3172598fbc9439",
+      "title": "Animal Farm",
+      "author": "George Orwell, Russell Baker (Preface), C.M. Woodhouse (Introduction)",
+      "rating": 3.95,
+      "genres": "['Classics', 'Fiction', 'Dystopia', 'Fantasy', 'Literature', 'Politics', 'School', 'Science Fiction', 'Novels', 'Read For School']",
+      "likedPercent": 91,
+      "coverImg": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1325861570l/170448.jpg",
+      "index": 6
+    },
+    {
+      "_id": "62d6b8047c3172598fbc943a",
+      "title": "The Chronicles of Narnia",
+      "author": "C.S. Lewis, Pauline Baynes (Illustrator)",
+      "rating": 4.26,
+      "genres": "['Fantasy', 'Classics', 'Fiction', 'Young Adult', 'Childrens', 'Christian', 'Adventure', 'Science Fiction Fantasy', 'Middle Grade', 'Christian Fiction']",
+      "likedPercent": 96,
+      "coverImg": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1449868701l/11127._SY475_.jpg",
+      "index": 7
+    },
+    {
+      "_id": "62d6b8047c3172598fbc943b",
+      "title": "J.R.R. Tolkien 4-Book Boxed Set: The Hobbit and The Lord of the Rings",
+      "author": "J.R.R. Tolkien",
+      "rating": 4.6,
+      "genres": "['Fantasy', 'Fiction', 'Classics', 'Adventure', 'Science Fiction Fantasy', 'Epic Fantasy', 'High Fantasy', 'Young Adult', 'Literature', 'Magic']",
+      "likedPercent": 98,
+      "coverImg": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1346072396l/30.jpg",
+      "index": 8
+    },
+    {
+      "_id": "62d6b8047c3172598fbc943c",
+      "title": "Gone with the Wind",
+      "author": "Margaret Mitchell",
+      "rating": 4.3,
+      "genres": "['Classics', 'Historical Fiction', 'Fiction', 'Romance', 'Historical', 'War', 'Literature', 'Civil War', 'Historical Romance', 'Novels']",
+      "likedPercent": 94,
+      "coverImg": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1551144577l/18405._SY475_.jpg",
+      "index": 9
+    },
+    {
+      "_id": "62d6b8047c3172598fbc943d",
+      "title": "The Fault in Our Stars",
+      "author": "John Green (Goodreads Author)",
+      "rating": 4.21,
+      "genres": "['Young Adult', 'Romance', 'Fiction', 'Contemporary', 'Realistic Fiction', 'Teen', 'Coming Of Age', 'Drama', 'Novels', 'Love']",
+      "likedPercent": 93,
+      "coverImg": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1360206420l/11870085.jpg",
+      "index": 10
+    },
+    {
+      "_id": "62d6b8047c3172598fbc943e",
+      "title": "The Hitchhiker's Guide to the Galaxy",
+      "author": "Douglas Adams",
+      "rating": 4.22,
+      "genres": "['Science Fiction', 'Fiction', 'Humor', 'Fantasy', 'Classics', 'Comedy', 'Science Fiction Fantasy', 'Audiobook', 'Adventure', 'Novels']",
+      "likedPercent": 94,
+      "coverImg": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1559986152l/386162.jpg",
+      "index": 11
+    },
+    {
+      "_id": "62d6b8047c3172598fbc943f",
+      "title": "The Giving Tree",
+      "author": "Shel Silverstein",
+      "rating": 4.37,
+      "genres": "['Childrens', 'Picture Books', 'Classics', 'Fiction', 'Poetry', 'Young Adult', 'Fantasy', 'Juvenile', 'Kids', 'Short Stories']",
+      "likedPercent": 94,
+      "coverImg": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1174210942l/370493._SX318_.jpg",
+      "index": 12
+    },
+    {
+      "_id": "62d6b8047c3172598fbc9440",
+      "title": "Wuthering Heights",
+      "author": "Emily Brontë, Richard J. Dunn (Editor), David Timson (Narrator), Charlotte Brontë (Commentary), Robert Heindel (Illustrator)",
+      "rating": 3.86,
+      "genres": "['Classics', 'Fiction', 'Romance', 'Gothic', 'Literature', 'Historical Fiction', '19th Century', 'Novels', 'Classic Literature', 'Historical']",
+      "likedPercent": 88,
+      "coverImg": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1587655304l/6185._SY475_.jpg",
+      "index": 13
+    },
+    {
+      "_id": "62d6b8047c3172598fbc9441",
+      "title": "The Da Vinci Code",
+      "author": "Dan Brown (Goodreads Author)",
+      "rating": 3.86,
+      "genres": "['Fiction', 'Mystery', 'Thriller', 'Suspense', 'Mystery Thriller', 'Historical Fiction', 'Adventure', 'Novels', 'Crime', 'Adult']",
+      "likedPercent": 89,
+      "coverImg": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1579621267l/968.jpg",
+      "index": 14
+    },
+    {
+      "_id": "62d6b8047c3172598fbc9442",
+      "title": "Memoirs of a Geisha",
+      "author": "Arthur Golden",
+      "rating": 4.12,
+      "genres": "['Fiction', 'Historical Fiction', 'Romance', 'Historical', 'Classics', 'Japan', 'Adult', 'Novels', 'Asia', 'Adult Fiction']",
+      "likedPercent": 95,
+      "coverImg": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1409595968l/929.jpg",
+      "index": 15
+    },
+    {
+      "_id": "62d6b8047c3172598fbc9443",
+      "title": "The Picture of Dorian Gray",
+      "author": "Oscar Wilde, Jeffrey Eugenides (Introduction)",
+      "rating": 4.08,
+      "genres": "['Classics', 'Fiction', 'Horror', 'Fantasy', 'Literature', 'Gothic', 'Novels', '19th Century', 'LGBT', 'Classic Literature']",
+      "likedPercent": 94,
+      "coverImg": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1546103428l/5297.jpg",
+      "index": 16
+    },
+    {
+      "_id": "62d6b8047c3172598fbc9444",
+      "title": "Alice's Adventures in Wonderland & Through the Looking-Glass",
+      "author": "Lewis Carroll, John Tenniel (Illustrator), Martin Gardner (Introduction)",
+      "rating": 4.06,
+      "genres": "['Classics', 'Fantasy', 'Fiction', 'Childrens', 'Young Adult', 'Literature', 'Adventure', 'Novels', '19th Century', 'British Literature']",
+      "likedPercent": 94,
+      "coverImg": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1327872220l/24213.jpg",
+      "index": 17
+    },
+    {
+      "_id": "62d6b8047c3172598fbc9445",
+      "title": "Jane Eyre",
+      "author": "Charlotte Brontë, Michael Mason (Editor), Barnett Freedman (Illustrator)",
+      "rating": 4.13,
+      "genres": "['Classics', 'Fiction', 'Romance', 'Historical Fiction', 'Literature', 'Gothic', 'Historical', '19th Century', 'School', 'Classic Literature']",
+      "likedPercent": 93,
+      "coverImg": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1557343311l/10210._SY475_.jpg",
+      "index": 18
+    },
+    {
+      "_id": "62d6b8047c3172598fbc9446",
+      "title": "Les Misérables",
+      "author": "Victor Hugo, Lee Fahnestock (Translator), Norman MacAfee (Translator)",
+      "rating": 4.18,
+      "genres": "['Classics', 'Fiction', 'Historical Fiction', 'Literature', 'France', 'Historical', 'Novels', 'French Literature', 'Romance', 'Classic Literature']",
+      "likedPercent": 93,
+      "coverImg": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1411852091l/24280.jpg",
+      "index": 19
+    }
+  ]
+}

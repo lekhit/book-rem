@@ -2,9 +2,6 @@ import { Masonry } from '@mui/lab';
 import { Grid, Container } from '@mui/material';
 import { Item } from './Grid_top';
 import Mycard from './card';
-import Mysample from './sample';
-import { useState, useEffect } from 'react';
-import Backdrop from './backdrop';
 
 
 export default function LinearDeterminate(props) {

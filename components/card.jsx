@@ -19,7 +19,6 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import Drawer from './drawer';
 import Link from 'next/link';
 import { useAppContext } from '../context/notes/state';
-import {BASE_URL} from '../utils/constants'
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
