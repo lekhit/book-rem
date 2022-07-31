@@ -18,7 +18,9 @@ export default async  (req, res) => {
   body.key=body.username;
   const db=await client.Base('users1')
   //user=await db.update({"likes":[]},body.username)
-     user = await db.update({"likes":body.likes},body.key)
+ const data={}
+ data['likes']=body.likes
+     user = await db.update(data,body.username)
 result={"message":"success","user":user}
 
  } catch (error) {

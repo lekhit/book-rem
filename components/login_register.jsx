@@ -10,11 +10,11 @@ const Form2=(props) => {
   const [message,setMessage]=React.useState(null);
   const [selected,setSelected]=React.useState(false);
   const [Button_label,setLabel]=React.useState("Login")
-const handleCheckbox=  ()=>{
+const handleCheckbox=  React.useCallback(()=>{
 setSelected(!selected);
 setLabel((selected?"Login": "Register"))
-}
-const handleSubmit=async (data)=>{
+})
+const handleSubmit=React.useCallback(async (data)=>{
 let url
 if (selected){
   data.likes=[]
@@ -31,15 +31,16 @@ else url=`${BASE_URL}/api/user_login`
     body: JSON.stringify(data),
   })
 const rs=await response.json()
-  console.log(rs,data)
   setMessage(rs.message)
   if(rs.message==="success"){
+    sessionStorage.setItem('username',data.username)
   props.changeState(null)
   is_login.setLogin(true);
 is_login.setUsername(data.username);
+is_login.setLikes(rs.likes)
 }
 
-}
+})
 
 const dataDefault={
     

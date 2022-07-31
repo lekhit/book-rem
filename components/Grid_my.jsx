@@ -18,10 +18,10 @@ export default function LinearDeterminate(props) {
   return (
     <>
       <Container sx={{ minHeight: 253, pt: 18 }} id="scrollableDiv">
-        <Masonry columns={{ sx: 1, md: 2, lg: 3 }} spacing={2.5}>
+        <Masonry container columns={{ sx: 1, md: 2, lg: 3 }} spacing={2.5}>
         {props.articles &&
             props.articles.map((height, index) => (
-              <Grid key={index}>
+              <Grid columns={{ sx: 1, md: 2, lg: 3 }} key={index}>
                 <Item>
                   <Mycard key={index} article={height} open={false} />
                 </Item>

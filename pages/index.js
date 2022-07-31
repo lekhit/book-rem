@@ -12,7 +12,7 @@ export default function Home({data}) {
         <title>Create Next App</title>
       </Head>
       <Grid data={data}/>
-      this is text
+      
     </div>
   );
 }

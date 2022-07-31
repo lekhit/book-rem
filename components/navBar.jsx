@@ -10,6 +10,7 @@ import Badge from '@mui/material/Badge';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
@@ -17,8 +18,11 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import { useRouter } from 'next/router'
 import Link from 'next/link'
+import BookIcon from '@mui/icons-material/Book';
 import { useAppContext } from '../context/notes/state';
 import Login_register from './login_register'
+import HomeIcon from '@mui/icons-material/Home';
+import LogoutIcon from '@mui/icons-material/Logout';
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -117,9 +121,16 @@ export default function PrimarySearchAppBar() {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
     </Menu>
   );
+
+const handleLogout=()=>{
+  is_login.setLogin(false)
+  is_login.setLikes({})
+  is_login.setUsername('')
+}
 
   const mobileMenuId = 'primary-search-account-menu-mobile';
   const renderMobileMenu = (
@@ -137,28 +148,21 @@ export default function PrimarySearchAppBar() {
       }}
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
-    >
-      <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
-            <MailIcon />
+    ><Link href={'/likes'}>
+      <MenuItem >
+      
+        <IconButton size="large" aria-label="show 2 new mails" color="inherit">
+          <Badge badgeContent={2} color="error">
+            <FavoriteIcon />
           </Badge>
         </IconButton>
-        <p>Messages</p>
+        
+        <p>Liked</p>
       </MenuItem>
-      <MenuItem>
-        <IconButton
-          size="large"
-          aria-label="show 17 new notifications"
-          color="inherit"
-        >
-          <Badge badgeContent={17} color="error">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
+      </Link>
+      
+      <MenuItem onClick={handleLogout}>
+
         <IconButton
           size="large"
           aria-label="account of current user"
@@ -166,10 +170,11 @@ export default function PrimarySearchAppBar() {
           aria-haspopup="true"
           color="inherit"
         >
-          <AccountCircle />
+          <LogoutIcon />
         </IconButton>
-        <p>Profile</p>
+        <p>Logout</p>
       </MenuItem>
+      
     </Menu>
   );
 
@@ -177,6 +182,7 @@ export default function PrimarySearchAppBar() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed">
         <Toolbar>
+        <Link href="/">
           <IconButton
             size="large"
             edge="start"
@@ -184,9 +190,10 @@ export default function PrimarySearchAppBar() {
             aria-label="open drawer"
             sx={{ mr: 2 }}
           >
-            <MenuIcon />
+            <BookIcon />
+            
           </IconButton>
-          
+          </Link>
           
        
           <Typography
@@ -195,7 +202,7 @@ export default function PrimarySearchAppBar() {
             component="div"
             sx={{ display: { xs: 'none', sm: 'block' } }}
           >
-<Link href="/">Books</Link>
+Books
 
           </Typography>
           
@@ -215,39 +222,31 @@ export default function PrimarySearchAppBar() {
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-          <Button color="inherit">Login</Button>
+          
           </Box>
           {!is_login.login && <Login_register/>}
           {is_login.login &&
            ( <>
            
-
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+          <Link href={'/likes'}>
             <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="error">
-                <MailIcon />
-              </Badge>
-            </IconButton>
+                <FavoriteIcon />
+               </IconButton>
+               </Link>
+            <Link href={'/'}>
             <IconButton
               size="large"
               aria-label="show 17 new notifications"
               color="inherit"
             >
               <Badge badgeContent={17} color="error">
-                <NotificationsIcon />
+                <HomeIcon />
               </Badge>
             </IconButton>
-            <IconButton
-              size="large"
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
+            </Link>
+            <Button color="inherit" onClick={handleLogout}>Logout</Button>
+
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
             <IconButton
@@ -260,8 +259,9 @@ export default function PrimarySearchAppBar() {
             >
               <MoreIcon />
             </IconButton>
+            
           </Box>
-        
+          
         </>)
       }
       </Toolbar>

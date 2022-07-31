@@ -30,71 +30,43 @@ const ExpandMore = styled((props) => {
     duration: theme.transitions.duration.shortest,
   }),
 }));
-function convert_gen(item){
 
-  const regex = /'(.+?)'/gm;
-
-  // Alternative syntax using RegExp constructor
-  // const regex = new RegExp('\'(.+?)\'', 'gm')
-  
-  const str =item
-  let m,arr=[];
-  
-  while ((m = regex.exec(str)) !== null) {
-      // This is necessary to avoid infinite loops with zero-width matches
-      if (m.index === regex.lastIndex) {
-          regex.lastIndex++;
-      }
-      
-      // The result can be accessed through the `m`-variable.
-      m.forEach((match, groupIndex) => {if(groupIndex===1) arr.push(match)
-          //console.log(`Found match, group ${groupIndex}: ${match}`);
-      });
-
-  }
-
-  return arr;
-}
 
 export default function RecipeReviewCard(props) {
-  const [expanded, setExpanded] = React.useState(() =>
-    props.open ? true : false
-  );
+
 const is_login=useAppContext();
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+
+
+
   const handleLike= async ()=>{
-    setLike(!like)
-   is_login.setLikes((data)=>{
-      return {...data,[props.article.index]:like}
+    let mydata={};
+  await is_login.setLikes((data)=>{
+      mydata.likes={...data,[props.article.index]:!data[props.article.index]}
+      return mydata.likes
     })
-    console.log(is_login.likes)
-const data={}
-data.likes=is_login.likes
-data.username=is_login.username
-data.index=props.article.index
+
+mydata.username=is_login.username
+
 const url=`${BASE_URL}/api/like_book2`
 let response
-if(!like) {
+ {
 response= await fetch(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(data),
+    body: JSON.stringify(mydata),
   })}
-  else {
-    response =await fetch(url +'?'+ new URLSearchParams(data))
-  }
+  
   
 
-const rs=await response.json()
-console.log(rs,is_login.likes)
+
   }
-const [like,setLike]=React.useState(is_login.likes[props.article.index]?is_login.likes[props.article.index]:false)
-  //const  arr=convert_gen(props.article.genres);
+//const  arr=convert_gen(props.article.genres);
 
   return (
     <>
@@ -172,30 +144,17 @@ const [like,setLike]=React.useState(is_login.likes[props.article.index]?is_login
   justifyContent="space-between"
   alignItems="center"
   spacing={2}>
-        <IconButton onClick={handleLike} color={like ? 'error':'inherit'} aria-label="add to favorites">
+        <IconButton onClick={handleLike} color={is_login.likes[props.article.index] ? 'error':'inherit'} aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
         <IconButton  aria-label="share">
           <ShareIcon />
         </IconButton>
-        <ExpandMore
-          expand={expanded}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </ExpandMore>
+        
         </Stack>}
        </Grid>
       </CardActions>
 
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-       
-          <Typography paragraph>{props.article.description}</Typography>
-        </CardContent>
-      </Collapse>
     </Card>
     </>
   );

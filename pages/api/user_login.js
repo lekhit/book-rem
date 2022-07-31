@@ -18,7 +18,7 @@ const body = req.body
   const db=await client.Base('users1')
      user = await db.get(body.key);
      if(user.password===body.password)
-result={"message":"success"}
+result={"message":"success","likes":user.likes}
  
 else result={"message":"username and password do not match"}
  } catch (error) {
