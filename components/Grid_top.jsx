@@ -8,8 +8,6 @@ import Mycard from './card';
 import { Grid, Button } from '@mui/material';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
-import Backdrop from './backdrop';
-var axios = require('axios').default;
 
 export const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -23,6 +21,7 @@ export const Item = styled(Paper)(({ theme }) => ({
     opacity: [0.9, 0.8, 0.7],
   },
   onClick: {},
+  maxWidth: 349
 }));
 
 export default function FixedColumns(props) {
