@@ -7,7 +7,7 @@ import Grid from '../components/Grid_my';
 import { BASE_URL } from '../utils/constants';
 var axios = require('axios').default;
 
-export default function Home({mydata}) {
+export default function Recommender({mydata}) {
   //const [data, setData] = useState();
   // useEffect(() => {
   //   //Get_books();

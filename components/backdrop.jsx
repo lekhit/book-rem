@@ -16,7 +16,7 @@ export default function SimpleBackdrop(props) {
     <div>
       <Backdrop
         sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-        open={props.on}
+      
 
       >
         <CircularProgress color="inherit" />

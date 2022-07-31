@@ -51,7 +51,7 @@ const is_login=useAppContext();
 
 mydata.username=is_login.username
 
-const url=`${BASE_URL}/api/like_book2`
+const url=`/api/like_book2`
 let response
  {
 response= await fetch(url, {

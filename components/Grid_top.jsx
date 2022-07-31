@@ -70,7 +70,7 @@ export default function FixedColumns(props) {
   const updateBooks = async () => {
     setLoading(true);
 
-    const res = await fetch(`${BASE_URL}/api/index_page?page=${page}`)
+    const res = await fetch(`/api/index_page?page=${page}`)
   const rs = await res.json()
   setArticles(articles.concat(rs.result));
   setLoading(false);

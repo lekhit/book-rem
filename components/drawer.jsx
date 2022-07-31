@@ -20,7 +20,7 @@ export default function TemporaryDrawer(props) {
 React.useEffect(()=>{
 
   const get_data=async()=>{
-  const res = await fetch(`${BASE_URL}/api/book_details?book_index=${props.book_index}`)
+  const res = await fetch(`/api/book_details?book_index=${props.book_index}`)
   const rs = await res.json()
 setArticle(rs.result);
 

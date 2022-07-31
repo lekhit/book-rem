@@ -5,10 +5,9 @@ import Backdrop from '../components/backdrop';
 
 import {useAppContext} from '../context/notes/state'
 import Grid from '../components/Grid_my';
-import { BASE_URL } from '../utils/constants';
 
 
-export default function Home() {
+export default function Likes() {
   //const [data, setData] = useState();
   // useEffect(() => {
   //   //Get_books();

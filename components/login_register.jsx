@@ -10,19 +10,19 @@ const Form2=(props) => {
   const [message,setMessage]=React.useState(null);
   const [selected,setSelected]=React.useState(false);
   const [Button_label,setLabel]=React.useState("Login")
-const handleCheckbox=  React.useCallback(()=>{
+const handleCheckbox=  (()=>{
 setSelected(!selected);
 setLabel((selected?"Login": "Register"))
 })
-const handleSubmit=React.useCallback(async (data)=>{
+const handleSubmit=async (data)=>{
 let url
 if (selected){
   data.likes=[]
   data.shared=[]
   data.for_me=[]
-  url=`${BASE_URL}/api/user_register`
+  url=`/api/user_register`
 }
-else url=`${BASE_URL}/api/user_login`
+else url=`/api/user_login`
  const response= await fetch(url, {
     method: 'POST',
     headers: {
@@ -40,7 +40,7 @@ is_login.setUsername(data.username);
 is_login.setLikes(rs.likes)
 }
 
-})
+}
 
 const dataDefault={
     
