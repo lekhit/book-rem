@@ -134,7 +134,7 @@ export default function FixedColumns(props) {
   //console.log(articles);
   return (
     <>
-    {loading  && <Backdrop/>}
+
       {/*Put the scroll bar always on the bottom*/}
       {articles && < Container sx={{ minHeight: 253, pt: 18 }} id="scrollableDiv">
         <InfiniteScroll
