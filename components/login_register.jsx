@@ -17,6 +17,9 @@ setLabel((selected?"Login": "Register"))
 const handleSubmit=async (data)=>{
 let url
 if (selected){
+  data.likes=[]
+  data.shared=[]
+  data.for_me=[]
   url=`${BASE_URL}/api/user_register`
 }
 else url=`${BASE_URL}/api/user_login`
@@ -30,8 +33,12 @@ else url=`${BASE_URL}/api/user_login`
 const rs=await response.json()
   console.log(rs,data)
   setMessage(rs.message)
+  if(rs.message==="success"){
   props.changeState(null)
   is_login.setLogin(true);
+is_login.setUsername(data.username);
+}
+
 }
 
 const dataDefault={

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
-import { Card, Box, Grid,Rating } from '@mui/material';
+import {Stack, Card, Box, Grid,Rating } from '@mui/material';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
@@ -18,7 +18,8 @@ import Button from '@mui/material/Button';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import Drawer from './drawer';
 import Link from 'next/link';
-
+import { useAppContext } from '../context/notes/state';
+import {BASE_URL} from '../utils/constants'
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
@@ -59,12 +60,40 @@ export default function RecipeReviewCard(props) {
   const [expanded, setExpanded] = React.useState(() =>
     props.open ? true : false
   );
-
+const is_login=useAppContext();
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+  const handleLike= async ()=>{
+    setLike(!like)
+   is_login.setLikes((data)=>{
+      return {...data,[props.article.index]:like}
+    })
+    console.log(is_login.likes)
+const data={}
+data.likes=is_login.likes
+data.username=is_login.username
+data.index=props.article.index
+const url=`${BASE_URL}/api/like_book2`
+let response
+if(!like) {
+response= await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  })}
+  else {
+    response =await fetch(url +'?'+ new URLSearchParams(data))
+  }
+  
 
+const rs=await response.json()
+console.log(rs,is_login.likes)
+  }
+const [like,setLike]=React.useState(is_login.likes[props.article.index]?is_login.likes[props.article.index]:false)
   //const  arr=convert_gen(props.article.genres);
 
   return (
@@ -118,15 +147,19 @@ export default function RecipeReviewCard(props) {
 
 
       <CardActions disableSpacing>
-      <Drawer book_index={props.article.index}/>
+    <Grid container
+          direction="column"
+          justifyContent="space-between"
+          alignItems="center">
       
         <Grid
           container
           direction="row"
-          justifyContent="flex-end"
-          alignItems="flex-end"
+          justifyContent="space-between"
+          alignItems="center"
         >
-          
+          <Drawer book_index={props.article.index}/>
+      
           
       <Link href={`/recommender?book_index=${props.article.index}`}>
             <Button variant="contained">
@@ -135,7 +168,28 @@ export default function RecipeReviewCard(props) {
             </Button>
           </Link>
         </Grid>
+       {is_login.login && <Stack direction="row"
+  justifyContent="space-between"
+  alignItems="center"
+  spacing={2}>
+        <IconButton onClick={handleLike} color={like ? 'error':'inherit'} aria-label="add to favorites">
+          <FavoriteIcon />
+        </IconButton>
+        <IconButton  aria-label="share">
+          <ShareIcon />
+        </IconButton>
+        <ExpandMore
+          expand={expanded}
+          onClick={handleExpandClick}
+          aria-expanded={expanded}
+          aria-label="show more"
+        >
+          <ExpandMoreIcon />
+        </ExpandMore>
+        </Stack>}
+       </Grid>
       </CardActions>
+
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
        

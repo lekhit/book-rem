@@ -1,5 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import db from '../../utils/deta';
+import client from '../../utils/deta';
 
 export default async  (req, res) => {
   // Open Chrome DevTools to step through the debugger!
@@ -13,6 +13,7 @@ let user;
   const body = req.body
   body.key=body.username;
   try {
+   const  db=await client.Base("users1")
      user = await db.insert(body);
   } catch (error) {
     user={"message":"error"}

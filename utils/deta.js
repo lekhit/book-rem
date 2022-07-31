@@ -1,4 +1,5 @@
 import { Deta } from 'deta'
+import { MongoClient } from 'mongodb'
 
 const key = process.env.DETA_KEY
 
@@ -15,17 +16,21 @@ if (process.env.NODE_ENV === 'development') {
   if (! global._detadb) {
 client = Deta(key)
 // name your DB
- global._detadb = client.Base("users1")
+
+ global._detadb = client
      }
-db = global._detadb
+
+client = global._detadb
 } else {
   // In production mode, it's best to not use a global variable.
   
-  client = Deta(process.env.DETA_KEY)
+  client = Deta(key)
 // name your DB
- db = client.Base("users1")
+
 }
 
 // Export a module-scoped MongoClient promise. By doing this in a
 // separate module, the client can be shared across functions.
-export default db
+
+
+export default client
