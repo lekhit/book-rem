@@ -30,7 +30,11 @@ export default function Search() {
   // };
   const [mydata,setMydata]=useState(false);
   const get_data= async()=>{
-const {text}=router.query;
+
+  }
+  
+useEffect(async ()=>{
+  const {text}=router.query;
   let data=[];
   //console.log(`${process.env.BASE_URL}/api/get_book?book_index=${ctx.query.book_index}` )
   try {
@@ -41,11 +45,7 @@ const {text}=router.query;
   } catch (error) {
     console.log(error)
   }
-  }
-  
-useEffect(()=>{
-  get_data()
-},[])
+},[router.query.text])
   return (
     <div className={styles.container}>
       <Head>
