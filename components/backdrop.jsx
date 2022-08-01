@@ -20,6 +20,7 @@ export default function SimpleBackdrop(props) {
 
       >
         <CircularProgress color="inherit" />
+Machine Thinking...
       </Backdrop>
     </div>
   );

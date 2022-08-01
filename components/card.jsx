@@ -73,7 +73,7 @@ response= await fetch(url, {
    
    
 
-<Card sx={{width:345 ,height:800, border: 0.5 }}>
+<Card sx={{width:345 ,height:900, border: 0.5 }}>
 <CardMedia
       sx={{width: 345,height : 550}}
         component="img"
