@@ -21,7 +21,7 @@ export const Item = styled(Paper)(({ theme }) => ({
     opacity: [0.9, 0.8, 0.7],
   },
   onClick: {},
-  maxWidth: 349
+  maxWidth: 365
 }));
 
 export default function FixedColumns(props) {

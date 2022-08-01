@@ -61,34 +61,3 @@ useEffect(()=>{
     </div>
   );
 }
-export async function getServerSideProps(ctx) {
-  // Fetch data from external API
- let data=[];
- console.log(ctx);
-  //console.log(`${process.env.BASE_URL}/api/get_book?book_index=${ctx.query.book_index}` )
-  try {
-   // const res = await fetch(`${BASE_URL}/api/get_mongo?book_index=${ctx.query.book_index}`)
-  //const rs = await res.json()
-  //console.log(rs,`${BASE_URL}/api/search_book?text=${ctx.query.text}`)
-   //data= JSON.parse(JSON.stringify(rs));
-  } catch (error) {
-    console.log(error)
-  }
-  
- 
-// let data;
-// console.log(`${process.env.BASE_URL}/api/get_data?book_index=${ctx.query.book_index}` )
-// fetch(`${process.env.BASE_URL}/api/get_data?book_index=${ctx.query.book_index}`)
-//       .then((res) => res.json())
-//       .then((dat) => {
-//        // console.log(dat);
-//         data=dat.result;
-//       })
-//       .catch((error) => {
-//         console.log(`${process.env.BASE_URL}/api/get_data?book_index=${ctx.query.book_index}` )
-//         console.error('Error:', error);
-//       });
-  // Pass data to the page via props
-  return { props: { mydata :data
-  } }
-}

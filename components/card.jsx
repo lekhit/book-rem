@@ -70,9 +70,80 @@ response= await fetch(url, {
   return (
     <>
    
-    <Card sx={{ maxWidth: 345, border: 0.5 }}>
+   
+   
+
+<Card sx={{width:345 ,height:800, border: 0.5 }}>
+<CardMedia
+      sx={{width: 345,height : 550}}
+        component="img"
+        image={
+          !props.article.coverImg
+            ? 'https://resizer.glanacion.com/resizer/kZdiizTP2IWRah3Y4Psz6YKzgbY=/768x0/filters:format(webp):quality(80)/cloudfront-us-east-1.images.arcpublishing.com/lanacionar/GF4WDVMYGNDKBCMWR7KXNFOE34.jpg'
+            : props.article.coverImg
+        }
+        alt="Paella dish"
+      /> 
+      <Stack
+  direction="column"
+  justifyContent="flex-end"
+
+>
+<CardContent>
+      <Rating name="half-rating-read" defaultValue={props.article.rating} precision={0.1} readOnly />
+          <Typography sx={{ mb: 1.5 }} color="text.secondary">
+          {props.article.likedPercent}%
+        </Typography>
       
-      <CardHeader
+          
+          
+      
+
+      
+      </CardContent>
+      <CardActions disableSpacing>
+      
+      <Grid container
+            direction="column"
+            justifyContent="space-around"
+            alignItems="center">
+        
+{is_login.login && <Stack direction="row">
+
+<IconButton onClick={handleLike} color={is_login.likes[props.article.index] ? 'error':'inherit'} aria-label="add to favorites">
+  <FavoriteIcon />
+</IconButton>
+<IconButton  aria-label="share">
+  <ShareIcon />
+</IconButton>
+</Stack>
+}
+
+          <Grid
+            container
+            direction="row"
+            justifyContent="space-between"
+
+          >
+            <Drawer book_index={props.article.index}/>
+        
+            
+        <Link href={`/recommender?book_index=${props.article.index}`}>
+              <Button variant="contained">
+                {' '}
+                Similar <ArrowForwardIosIcon />
+              </Button>
+            </Link>
+          </Grid>
+  
+         
+         </Grid>
+        </CardActions>
+
+
+
+
+<CardHeader
         // avatar={
         //   <Typography sx={{maxwidth:"20"}} variant="body1" color="red">
         //     {props.article.author}<br/>
@@ -86,73 +157,14 @@ response= await fetch(url, {
         }
         title={props.article.title}
         subheader={props.article.author}
-      />
-      
-      <CardMedia
-        component="img"
-        image={
-          !props.article.coverImg
-            ? 'https://resizer.glanacion.com/resizer/kZdiizTP2IWRah3Y4Psz6YKzgbY=/768x0/filters:format(webp):quality(80)/cloudfront-us-east-1.images.arcpublishing.com/lanacionar/GF4WDVMYGNDKBCMWR7KXNFOE34.jpg'
-            : props.article.coverImg
-        }
-        alt="Paella dish"
-      />
-
-      <CardContent>
-       
-      <Grid
-          container
-          direction="column"
-          justifyContent="space-around"
-          alignItems="center"
-        >
-          
-          <Rating name="half-rating-read" defaultValue={props.article.rating} precision={0.1} readOnly />
-          <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          {props.article.likedPercent}%
-        </Typography>
-      
-        </Grid>
-      
-      </CardContent>
-
-
-      <CardActions disableSpacing>
-    <Grid container
-          direction="column"
-          justifyContent="space-between"
-          alignItems="center">
-      
-        <Grid
-          container
-          direction="row"
-          justifyContent="space-between"
-          alignItems="center"
-        >
-          <Drawer book_index={props.article.index}/>
-      
-          
-      <Link href={`/recommender?book_index=${props.article.index}`}>
-            <Button variant="contained">
-              {' '}
-              Similar <ArrowForwardIosIcon />
-            </Button>
-          </Link>
-        </Grid>
-       {is_login.login && <Stack direction="row"
-  justifyContent="space-between"
-  alignItems="center"
-  spacing={2}>
-        <IconButton onClick={handleLike} color={is_login.likes[props.article.index] ? 'error':'inherit'} aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton  aria-label="share">
-          <ShareIcon />
-        </IconButton>
+      >
         
-        </Stack>}
-       </Grid>
-      </CardActions>
+        </CardHeader>
+     
+
+
+      
+      </Stack>
 
     </Card>
     </>
