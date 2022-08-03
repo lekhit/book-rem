@@ -57,7 +57,7 @@ export default function Recommender({mydata1}) {
   return (
     <div >
       <Head>
-        <title>Recommendations</title>
+        <title>{mydata1[0].title}</title>
       </Head>
 
 

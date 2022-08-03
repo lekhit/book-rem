@@ -9,7 +9,7 @@ export default function Home({data}) {
   return (
     <div>
       <Head>
-        <title>Recommender</title>
+        <title>AI-Recommender</title>
       </Head>
       <Grid data={data}/>
       
