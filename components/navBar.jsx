@@ -203,7 +203,7 @@ const handleLogout=()=>{
             component="div"
             sx={{ display: { xs: 'none', sm: 'block' } }}
           >
-Books
+AI-Recommender
 
           </Typography>
           

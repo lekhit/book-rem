@@ -9,7 +9,7 @@ export default function Home({data}) {
   return (
     <div>
       <Head>
-        <title>Create Next App</title>
+        <title>Recommender</title>
       </Head>
       <Grid data={data}/>
       
