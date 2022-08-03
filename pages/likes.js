@@ -2,8 +2,8 @@ import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import { useState, useEffect } from 'react';
 import Backdrop from '../components/backdrop';
-import clientPromise from '../../utils/mongodb';
-import deta from '../../utils/deta'
+import clientPromise from '../utils/mongodb';
+import deta from '../utils/deta'
 import {useAppContext} from '../context/notes/state'
 import Grid from '../components/Grid_my';
 
