@@ -5,7 +5,7 @@ import Backdrop from '../components/backdrop';
 import { useRouter } from 'next/router';
 import Grid from '../components/Grid_my';
 import { BASE_URL } from '../utils/constants';
-import clientPromise from '../../utils/mongodb';
+import clientPromise from '../utils/mongodb';
 
 
 export default function Search({heading,mydata1}) {
@@ -58,7 +58,7 @@ export default function Search({heading,mydata1}) {
       <Head>
         <title>{heading}</title>
       </Head>
-      {mydata1&&<Grid  articles={mydata1.result}/>}
+      {mydata1&&<Grid  articles={mydata1}/>}
     </div>
   );
 }
@@ -66,7 +66,7 @@ export default function Search({heading,mydata1}) {
 export async function getServerSideProps(ctx) {
   // Fetch data from external API
   //console.log(request.query)
-  const { text } = cxt.query;
+  const { text } = ctx.query;
   //console.log(request.query)
 
 
@@ -92,13 +92,13 @@ export async function getServerSideProps(ctx) {
 if (typeof item.index==='undefined') return false;
 return true;
  }
-
+let data;
 //console.log(query,result)
   try {
     const client = await clientPromise
     const db=await client.db('books');
     //
-   let data = await db.collection('books').aggregate(query).toArray();
+   data = await db.collection('books').aggregate(query).toArray();
    data=data.filter(check_index)
    
     // const books = [];
