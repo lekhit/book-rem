@@ -1,6 +1,6 @@
 import clientPromise from '../../utils/mongodb';
 import deta from '../../utils/deta'
-import { BACKEND_URL } from '../../utils/constants';
+
 export default async function handler(request, response) {
   const { username } = request.query;
 const get_db=await deta.Base('users1')

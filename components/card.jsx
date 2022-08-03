@@ -73,9 +73,9 @@ response= await fetch(url, {
    
    
 
-<Card sx={{width:345 ,height:900, border: 0.5 }}>
+<Card sx={{maxWidth:345 ,height:900, border: 0.5 }}>
 <CardMedia
-      sx={{width: 345,height : 550}}
+      sx={{maxWidth: 345,height : 550}}
         component="img"
         image={
           !props.article.coverImg

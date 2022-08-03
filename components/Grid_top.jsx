@@ -148,7 +148,7 @@ export default function FixedColumns(props) {
   alignItems="flex-start"
    columns={{ sx: 1, md: 2, lg: 3 }} spacing={0.5}>
             { articles.map((height, index) => (
-              <Grid key={index} item sx={{ p: 2 }}>
+              <Grid key={index} item  sx={{pt:2,pb:2}}>
                 <Item>
                   <Mycard key={index} article={height} />
                 </Item>

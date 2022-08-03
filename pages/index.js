@@ -7,7 +7,7 @@ import Mydata from '../public/sample'
 
 export default function Home({data}) {
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>Create Next App</title>
       </Head>
